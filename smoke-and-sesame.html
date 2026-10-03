@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smoke & Sesame — Fire-grilled street food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFE600;--paper:#FFC2EC;--ink:#1A0B3B;--red:#FF2E7E;--green:#6A2CFF;--card:#fff;--line:#1A0B3B;--teal:#00D9B5;--orange:#FF7A00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A0B3B;--paper:#2E1664;--ink:#FFF3A0;--red:#FF4D9A;--green:#00D9B5;--card:#26124F;--line:#FFF3A0;--teal:#00D9B5;--orange:#FF9A33}}
+:root[data-theme="dark"]{--bg:#1A0B3B;--paper:#2E1664;--ink:#FFF3A0;--red:#FF4D9A;--green:#00D9B5;--card:#26124F;--line:#FFF3A0;--teal:#00D9B5;--orange:#FF9A33}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 'DM Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Impact,sans-serif;font-weight:800;line-height:.95;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:var(--bg);border-bottom:3px solid var(--line)}
+.logo{font:800 24px 'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:-.03em}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:700}
+nav a.on,nav a:hover{background:var(--ink);color:var(--bg)}
+.cart{border:3px solid var(--line);background:var(--red);color:#fff;font:700 15px 'DM Sans';padding:8px 14px;border-radius:99px;cursor:pointer}
+main{max-width:1100px;margin:0 auto;padding:32px 20px 64px;min-height:70vh}
+.page{display:none}.page.on{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(52px,10vw,120px)}
+.hero h1 span{display:block;color:var(--red)}
+.hero p{max-width:46ch;font-size:19px;margin:20px 0 28px}
+.btn{display:inline-block;border:3px solid var(--line);background:var(--ink);color:var(--bg);padding:14px 26px;border-radius:99px;font:700 17px 'DM Sans';text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--red);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--red)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:5px 5px 0 var(--ink);margin-left:8px}
+.plate{aspect-ratio:1;border-radius:50%;background:var(--red);border:4px solid var(--line);display:grid;place-items:center;font-size:min(32vw,230px);animation:spin 1.2s cubic-bezier(.2,.9,.3,1.2) both;box-shadow:12px 12px 0 var(--ink)}
+@keyframes spin{from{transform:rotate(-120deg) scale(.3);opacity:0}}
+.marquee{margin:48px -20px;background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:14px 0;font:800 26px 'Bricolage Grotesque'}
+.marquee div{display:inline-block;animation:slide 22s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.box{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:24px}
+.box h3{font-size:30px;margin-bottom:8px}
+.big{background:var(--green);color:#FFF3C4;border-radius:28px;padding:40px;margin-top:48px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;border:3px solid var(--line)}
+.big h2{font-size:clamp(32px,5vw,56px);max-width:16ch}
+.big .btn{background:#FFD23F;color:#23140F;box-shadow:5px 5px 0 #23140F}
+h2.t{font-size:clamp(40px,7vw,80px);margin-bottom:8px}
+.sub{max-width:52ch;margin:0 0 28px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{border:3px solid var(--line);background:transparent;color:var(--ink);padding:8px 16px;border-radius:99px;font:700 15px 'DM Sans';cursor:pointer}
+.chip.on{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.item{background:var(--card);border:3px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s}
+.item:hover{transform:rotate(-1deg) translateY(-4px)}
+.pic{font-size:78px;text-align:center;padding:22px;background:var(--paper);border-bottom:3px solid var(--line)}
+.item .in{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.item h3{font-size:26px}
+.item p{margin:0;font-size:15px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.price{font:800 24px 'Bricolage Grotesque'}
+.add{border:3px solid var(--line);background:var(--red);color:#fff;border-radius:99px;font:700 14px 'DM Sans';padding:8px 16px;cursor:pointer}
+.tag{font-size:13px;font-weight:700;color:var(--red)}
+.rev{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start}
+.score{font:800 clamp(80px,14vw,150px)/.9 'Bricolage Grotesque';color:var(--red)}
+.stars{color:var(--red);letter-spacing:2px;font-size:20px}
+.quote{margin-bottom:16px}
+.quote p{margin:8px 0;font-size:18px}
+.quote small{font-weight:700}
+form{display:grid;gap:12px;margin-top:20px}
+input,select,textarea{width:100%;border:3px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:12px;font:inherit}
+details{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:16px 20px;margin-bottom:12px}
+summary{font:800 22px 'Bricolage Grotesque';cursor:pointer}
+details p{margin:10px 0 0}
+.help{display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:start}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-weight:700;transition:transform .25s;z-index:9}
+.toast.show{transform:translate(-50%,0)}
+footer{border-top:3px solid var(--line);padding:24px 20px;text-align:center;font-weight:700}
+@media(max-width:760px){.hero,.rev,.help{grid-template-columns:1fr}.plate{max-width:320px;margin:0 auto;order:-1}header{padding:10px 14px}.btn.alt{margin:12px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.plate{background:conic-gradient(from 200deg,var(--red),var(--orange),var(--bg),var(--teal),var(--green),var(--red))}
+.marquee{background:var(--green);color:#fff}
+.stats .box:nth-child(1){background:var(--teal);color:#1A0B3B}
+.stats .box:nth-child(2){background:var(--paper);color:var(--ink)}
+.stats .box:nth-child(3){background:var(--orange);color:#1A0B3B}
+.big{background:linear-gradient(120deg,var(--green),var(--red));color:#fff}
+.big .btn{background:#FFE600;color:#1A0B3B;box-shadow:5px 5px 0 #1A0B3B}
+.pic{background:var(--paper)}
+.item:nth-child(3n+1) .pic{background:var(--teal)}
+.item:nth-child(3n+2) .pic{background:var(--orange)}
+.item:nth-child(3n) .pic{background:var(--paper)}
+.add{background:var(--green)}
+.chip.on{background:var(--red);color:#fff}
+.cart{background:var(--green)}
+nav a.on,nav a:hover{background:var(--red);color:#fff}
+.score{background:linear-gradient(90deg,var(--red),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.line{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:3px solid var(--line);border-radius:18px;padding:12px 16px;margin-bottom:10px}
+.line b{font:800 20px 'Bricolage Grotesque'}
+.qty{display:flex;align-items:center;gap:10px;font-weight:700}
+.qty button{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);background:var(--teal);color:#1A0B3B;font:800 18px 'DM Sans';cursor:pointer;line-height:1}
+.sum{display:flex;justify-content:space-between;padding:4px 2px}
+.sum.tot{font:800 28px 'Bricolage Grotesque';border-top:3px solid var(--line);margin-top:8px;padding-top:10px}
+.ticket{max-width:480px;margin:0 auto;text-align:center}
+.qrbox{display:inline-block;background:#fff;padding:16px;border:4px solid var(--line);border-radius:22px;box-shadow:8px 8px 0 var(--red);margin:12px 0}
+.qrbox img,.qrbox canvas{display:block}
+.ocode{font:800 clamp(48px,12vw,72px) 'Bricolage Grotesque';color:var(--red)}
+.ticket ul{list-style:none;padding:0;margin:12px 0;text-align:left}
+.ticket li{display:flex;justify-content:space-between;padding:4px 0;border-bottom:2px dashed var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#home">Smoke & Sesame</a>
+  <nav aria-label="Main">
+    <a href="#home" data-p="home">Home</a><a href="#menu" data-p="menu">Menu</a><a href="#reviews" data-p="reviews">Reviews</a><a href="#help" data-p="help">Help</a>
+  </nav>
+  <button class="cart" id="cart" aria-label="Order total">Order: 0 items</button>
+</header>
+<main>
+<section class="page" id="home">
+  <div class="hero">
+    <div>
+      <h1>Fire.<span>Flavor.</span>Fast.</h1>
+      <p>Charcoal-grilled wraps, bowls and skewers with house-made sauces. Cooked over open flame, ready in ten minutes.</p>
+      <a class="btn" href="#menu">Order now</a><a class="btn alt" href="#reviews">Read reviews</a>
+    </div>
+    <div class="plate" aria-hidden="true">🌯</div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div>🔥 Grilled to order &nbsp; 🌶️ Sauces made daily &nbsp; 🥙 Vegan options &nbsp; 🍋 Fresh every morning &nbsp; 🔥 Grilled to order &nbsp; 🌶️ Sauces made daily &nbsp; 🥙 Vegan options &nbsp; 🍋 Fresh every morning &nbsp; 🔥 Grilled to order &nbsp; 🌶️ Sauces made daily &nbsp; 🥙 Vegan options &nbsp; 🍋 Fresh every morning &nbsp;</div></div>
+  <div class="stats">
+    <div class="box"><h3>Real charcoal</h3><p>No gas, no shortcuts. Every skewer touches live coals.</p></div>
+    <div class="box"><h3>10-minute ready</h3><p>Order ahead and your food is waiting when you arrive.</p></div>
+    <div class="box"><h3>Made from scratch</h3><p>Breads, pickles and sauces are prepared in our kitchen each day.</p></div>
+  </div>
+  <div class="big"><h2>Hungry? Start with the Smoke Wrap.</h2><a class="btn" href="#menu">See the menu</a></div>
+</section>
+
+<section class="page" id="menu">
+  <h2 class="t">The menu</h2>
+  <p class="sub">Pick a favorite, add it to your order, and we'll start the grill.</p>
+  <div class="chips" id="chips" role="group" aria-label="Filter menu"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="page" id="reviews">
+  <h2 class="t">What people say</h2>
+  <div class="rev">
+    <div>
+      <div class="score" id="avg">4.8</div>
+      <div class="stars" id="avgStars">★★★★★</div>
+      <p id="count"></p>
+      <form id="rf">
+        <input id="rn" placeholder="Your name" required maxlength="30">
+        <select id="rs" aria-label="Rating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select>
+        <textarea id="rt" rows="3" placeholder="Tell us about your meal" required maxlength="240"></textarea>
+        <button class="btn" type="submit">Post review</button>
+      </form>
+    </div>
+    <div id="rlist"></div>
+  </div>
+</section>
+
+<section class="page" id="help">
+  <h2 class="t">Help</h2>
+  <p class="sub">Quick answers first. If you still need us, send a message.</p>
+  <div class="help">
+    <div>
+      <details open><summary>How do I place an order?</summary><p>Open the Menu page, tap Add on any dish, and check your total at the top. Pay at the counter when you pick up.</p></details>
+      <details><summary>Do you have vegan or gluten-free food?</summary><p>Yes. Items marked Vegan have no animal products. Ask us about gluten-free bread for any wrap.</p></details>
+      <details><summary>What are your hours?</summary><p>Monday to Thursday 11am–9pm, Friday and Saturday 11am–11pm, Sunday 12pm–8pm.</p></details>
+      <details><summary>Something was wrong with my order</summary><p>Tell us right away using the form. We will remake the dish or refund you.</p></details>
+      <details><summary>Can I book for a group?</summary><p>Groups of 8 or more can reserve a long table. Send us the date and headcount.</p></details>
+    </div>
+    <div class="box"><h3>Contact us</h3>
+      <form id="hf"><input placeholder="Your email" type="email" required><textarea rows="4" placeholder="How can we help?" required></textarea><button class="btn" type="submit">Send message</button></form>
+      <p><strong>Call:</strong> (555) 014-2290<br><strong>Visit:</strong> 21 Ember Street</p>
+    </div>
+  </div>
+</section>
+<section class="page" id="order">
+  <h2 class="t">Your order</h2>
+  <div id="cartView" class="help">
+    <div id="olines"></div>
+    <div class="box" id="checkout"></div>
+  </div>
+  <div id="ticket" class="ticket" hidden></div>
+</section>
+</main>
+<footer>© 2026 Smoke & Sesame · Open late, grilled fresh</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const items=[
+{n:'Smoke Wrap',c:'Wraps',e:'🌯',p:11,d:'Charred chicken, garlic sauce, pickles, crisp lettuce.',t:'Bestseller'},
+{n:'Falafel Wrap',c:'Wraps',e:'🥙',p:10,d:'Crunchy falafel, tahini, tomato, mint.',t:'Vegan'},
+{n:'Lamb Skewers',c:'Grill',e:'🍢',p:15,d:'Two skewers with smoked paprika and sumac onions.',t:'Spicy'},
+{n:'Fire Wings',c:'Grill',e:'🍗',p:12,d:'Six wings glazed with chili honey.',t:'Spicy'},
+{n:'Rice Bowl',c:'Bowls',e:'🍚',p:13,d:'Saffron rice, grilled veg, yogurt dressing, herbs.',t:'Vegetarian'},
+{n:'Harvest Bowl',c:'Bowls',e:'🥗',p:12,d:'Roasted squash, chickpeas, greens, lemon tahini.',t:'Vegan'},
+{n:'Sesame Fries',c:'Sides',e:'🍟',p:6,d:'Hand-cut fries tossed in toasted sesame salt.',t:'Vegan'},
+{n:'Charred Corn',c:'Sides',e:'🌽',p:5,d:'Grilled corn with lime butter and chili.',t:'Vegetarian'},
+{n:'Mango Lassi',c:'Drinks',e:'🥭',p:5,d:'Thick mango and yogurt shake.',t:'Vegetarian'},
+{n:'Mint Lemonade',c:'Drinks',e:'🍋',p:4,d:'Pressed lemons, fresh mint, a little sugar.',t:'Vegan'}];
+const cats=['All','Wraps','Grill','Bowls','Sides','Drinks'];
+let cat='All';const cart={};let last=null;const TAX=0.08;
+try{last=JSON.parse(localStorage.getItem('ss-last')||'null')}catch(e){}
+const $=s=>document.querySelector(s);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),1800)}
+function drawMenu(){
+ $('#chips').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" data-c="${c}">${c}</button>`).join('');
+ $('#grid').innerHTML=items.filter(i=>cat==='All'||i.c===cat).map(i=>`<article class="item"><div class="pic" aria-hidden="true">${i.e}</div><div class="in"><span class="tag">${i.t}</span><h3>${i.n}</h3><p>${i.d}</p><div class="row"><span class="price">$${i.p}</span><button class="add" data-n="${i.n}" data-p="${i.p}">Add</button></div></div></article>`).join('');
+}
+$('#chips').onclick=e=>{const c=e.target.dataset.c;if(c){cat=c;drawMenu()}};
+$('#grid').onclick=e=>{const b=e.target.closest('.add');if(!b)return;const n=b.dataset.n;cart[n]=cart[n]||{p:+b.dataset.p,q:0};cart[n].q++;updateCart();toast(n+' added to your order')};
+const money=n=>'$'+n.toFixed(2);
+const sub=()=>Object.values(cart).reduce((a,i)=>a+i.p*i.q,0);
+const qtyN=()=>Object.values(cart).reduce((a,i)=>a+i.q,0);
+function slots(){const o=[],d=new Date();d.setMinutes(Math.ceil((d.getMinutes()+15)/15)*15,0,0);o.push('As soon as possible (about 10 min)');for(let i=0;i<8;i++){o.push(d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}));d.setMinutes(d.getMinutes()+15)}return o}
+function updateCart(){const q=qtyN();$('#cart').textContent=q?`Order: ${q} item${q>1?'s':''} · ${money(sub()*(1+TAX))}`:'Order: 0 items';drawOrder()}
+function drawOrder(){
+ const keys=Object.keys(cart),cv=$('#cartView'),tk=$('#ticket');
+ if(!keys.length&&last){cv.hidden=true;tk.hidden=false;drawTicket(last);return}
+ tk.hidden=true;cv.hidden=false;
+ if(!keys.length){$('#olines').innerHTML='<div class="box"><h3>Nothing here yet</h3><p>Add a dish from the menu to start your pickup order.</p><a class="btn" href="#menu">Go to the menu</a></div>';$('#checkout').innerHTML='';return}
+ $('#olines').innerHTML=keys.map(n=>`<div class="line"><b>${n}</b><div class="qty"><button data-n="${n}" data-d="-1" aria-label="Remove one ${n}">−</button><span>${cart[n].q}</span><button data-n="${n}" data-d="1" aria-label="Add one ${n}">+</button><span>${money(cart[n].p*cart[n].q)}</span></div></div>`).join('');
+ const st=sub(),tx=st*TAX;
+ $('#checkout').innerHTML=`<h3>Pickup details</h3><form id="cf"><input id="cn" placeholder="Name for the order" required maxlength="30"><select id="ct" aria-label="Pickup time">${slots().map(t=>`<option>${t}</option>`).join('')}</select>
+ <div><div class="sum"><span>Subtotal</span><span>${money(st)}</span></div><div class="sum"><span>Tax (8%)</span><span>${money(tx)}</span></div><div class="sum tot"><span>Total</span><span>${money(st+tx)}</span></div></div>
+ <button class="btn" type="submit">Place order</button><small>You pay at the counter when you pick up.</small></form>`;
+ $('#cf').onsubmit=placeOrder;
+}
+$('#cart').onclick=()=>{location.hash='order'};
+$('#olines').onclick=e=>{const b=e.target.closest('button');if(!b)return;const n=b.dataset.n;cart[n].q+=+b.dataset.d;if(cart[n].q<1)delete cart[n];updateCart()};
+function placeOrder(e){e.preventDefault();const st=sub();
+ const id=String.fromCharCode(65+Math.floor(Math.random()*26))+String(Math.floor(1000+Math.random()*9000));
+ last={id,name:$('#cn').value.trim(),time:$('#ct').value,lines:Object.entries(cart).map(([n,i])=>({n,q:i.q,p:i.p})),total:+(st*(1+TAX)).toFixed(2)};
+ try{localStorage.setItem('ss-last',JSON.stringify(last))}catch(x){}
+ Object.keys(cart).forEach(k=>delete cart[k]);updateCart();scrollTo(0,0);toast('Order placed. Show the QR code at the counter.')}
+function drawTicket(o){
+ const tk=$('#ticket');
+ tk.innerHTML=`<h3 style="font-size:40px">Show this at the counter</h3><div class="qrbox" id="qr"></div><div class="ocode">${o.id}</div><p><strong class="nm"></strong><br>Pickup: <span class="tm"></span></p><ul>${o.lines.map(l=>`<li><span>${l.q} × ${l.n}</span><span>${money(l.q*l.p)}</span></li>`).join('')}<li><strong>Total to pay</strong><strong>${money(o.total)}</strong></li></ul><button class="btn" id="nw">Start a new order</button>`;
+ tk.querySelector('.nm').textContent=o.name;tk.querySelector('.tm').textContent=o.time;
+ const txt=`SMOKE & SESAME ORDER ${o.id}\n${o.name} | Pickup: ${o.time}\n`+o.lines.map(l=>`${l.q}x ${l.n}`).join(', ')+`\nTOTAL TO PAY: ${money(o.total)}`;
+ try{new QRCode($('#qr'),{text:txt,width:220,height:220,colorDark:'#1A0B3B',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(x){$('#qr').textContent='Show order '+o.id}
+ $('#nw').onclick=()=>{last=null;try{localStorage.removeItem('ss-last')}catch(x){}location.hash='menu';drawOrder()};
+}
+const revs=[{n:'Maya R.',s:5,t:'The Smoke Wrap is unreal. I drove across town for it twice this week.'},{n:'Dev P.',s:5,t:'Finally a vegan wrap that is not boring. The tahini is perfect.'},{n:'Jordan L.',s:4,t:'Fast and friendly. Lamb skewers were juicy, fries could be hotter.'},{n:'Sam K.',s:5,t:'Order ahead worked perfectly. Food was ready the moment I walked in.'}];
+const st=n=>'★'.repeat(n)+'☆'.repeat(5-n);
+function drawRev(){
+ const a=revs.reduce((x,r)=>x+r.s,0)/revs.length;
+ $('#avg').textContent=a.toFixed(1);$('#avgStars').textContent=st(Math.round(a));$('#count').textContent=`Based on ${revs.length} reviews`;
+ $('#rlist').innerHTML=revs.map(r=>`<div class="box quote"><div class="stars">${st(r.s)}</div><p></p><small></small></div>`).join('');
+ [...document.querySelectorAll('#rlist .quote')].forEach((q,i)=>{q.querySelector('p').textContent=revs[i].t;q.querySelector('small').textContent=revs[i].n});
+}
+$('#rf').onsubmit=e=>{e.preventDefault();revs.unshift({n:$('#rn').value,s:+$('#rs').value,t:$('#rt').value});e.target.reset();drawRev();toast('Thanks for your review')};
+$('#hf').onsubmit=e=>{e.preventDefault();e.target.reset();toast('Message sent. We reply within a day.')};
+function route(){
+ const h=(location.hash||'#home').slice(1);const p=document.getElementById(h)?h:'home';
+ document.querySelectorAll('.page').forEach(s=>s.classList.toggle('on',s.id===p));
+ document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.p===p));
+ scrollTo(0,0);
+}
+addEventListener('hashchange',route);drawMenu();drawRev();drawOrder();route();
+</script>
+</body>
+</html>
